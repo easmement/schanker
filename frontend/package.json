@@ -1,0 +1,11 @@
+{
+  "name": "frontend",
+  "description": "",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+  ],
+  "devDependencies": {
+    "shadow-cljs": "^3.2.0"
+  }
+}
