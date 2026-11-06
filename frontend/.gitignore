@@ -1,41 +1,41 @@
-**/classes
-**/target
-**/.artifacts
-**/.cpcache
-**/.DS_Store
-**/.gradle
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/shelf
-.idea/**/statistic.xml
-.idea/dictionaries/**
-.idea/libraries/**
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# File-based project format
-*.iws
-*.ipr
+# testing
+/coverage
 
-# Cursive Clojure plugin
-.idea/replstate.xml
-*.iml
+# next.js
+/.next/
+/out/
 
-/example/example/**
-artifacts
-projects/**/pom.xml
+# production
+/build
 
-# nrepl
-.nrepl-port
+# misc
+.DS_Store
+*.pem
 
-# clojure-lsp
-.lsp/.cache
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# clj-kondo
-.clj-kondo/.cache
+# env files (can opt-in for committing if needed)
+.env*
 
-# Calva VS Code Extension
-.calva/output-window/output.calva-repl
-.calva/repl.calva-repl
+# vercel
+.vercel
 
+# typescript
+*.tsbuildinfo
+next-env.d.ts

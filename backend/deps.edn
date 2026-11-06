@@ -1,6 +1,12 @@
 {:aliases  {:dev {:extra-paths ["development/src"]
 
-                  :extra-deps {org.clojure/clojure {:mvn/version "1.12.2"}}}
+                  :extra-deps {org.clojure/clojure {:mvn/version "1.12.2"}
+                               ;; JSON API for the web UI (atndev.server)
+                               http-kit/http-kit   {:mvn/version "2.8.0"}
+                               cheshire/cheshire   {:mvn/version "5.13.0"}}}
+
+            ;; JSON API for ../frontend. Run: clojure -M:dev:server
+            :server {:main-opts ["-m" "atndev.server"]}
 
             ;; Unit tests. Run: clojure -M:dev:test
             :test {:extra-paths ["development/test"]

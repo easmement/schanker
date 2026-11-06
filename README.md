@@ -13,9 +13,10 @@ it goes:
 3. causal links explain *why* things happen;
 4. plans and goals connect what characters want to what they do.
 
-> **Status: exploration.** All 49 tests (183 assertions) pass, and every example below is real
+> **Status: exploration.** All 54 tests (197 assertions) pass, and every example below is real
 > output. The grammar covers a deliberately small set of sentence shapes; see
-> [Scope and limitations](#scope-and-limitations).
+> [Scope and limitations](#scope-and-limitations). A [web UI](#web-ui) lets you try the parser in
+> a browser.
 
 ## The idea in one example
 
@@ -181,14 +182,36 @@ The goal monitor watches a stream of CD events and does four things for each goa
 John wanted SEEK-ENTERTAINMENT [E] → ACHIEVED
 ```
 
+## Web UI
+
+A Next.js (React) app in [`frontend/`](frontend/) for trying the parser in a browser. Pick a sample
+sentence from three groups:
+
+- one sentence for each of the 11 primitive ACTs;
+- sentences with embedded events;
+- paraphrases the grammar doesn't handle yet.
+
+Or type your own. The page shows the tokens with their lexicon categories, the CD frame (nested
+cards for embedded events), any alternative parses, and the parser's step-by-step trace.
+
+```bash
+cd backend && clojure -M:dev:server            # JSON API on 127.0.0.1:3100
+cd frontend && npm install && npm run dev      # UI on http://localhost:3000
+```
+
+The browser calls the app's own `/api/*` routes, and Next.js forwards them to the Clojure API.
+[`frontend/UI-DESIGN.md`](frontend/UI-DESIGN.md) explains the architecture, the API contract, the
+components and state management.
+
 ## Try it
 
 Requires a JDK and the [Clojure CLI](https://clojure.org/guides/install_clojure).
 
 ```bash
 cd backend
-clojure -M:dev:test        # run the 49 tests
+clojure -M:dev:test        # run the 54 tests
 clojure -M:dev             # start a REPL
+clojure -M:dev:server      # or start the JSON API used by the web UI
 ```
 
 ```clojure
@@ -211,9 +234,9 @@ file, without touching the grammar.
 ```text
 backend/                       Clojure Polylith workspace (the exploration lives here)
   CD-ATN-PARSER.md             in-depth design notes: 11 sections, worked traces, quick reference
-  development/src/atndev/      core · lexicon · scripts · causal · plans · goal_monitor
+  development/src/atndev/      core · lexicon · scripts · causal · plans · goal_monitor · server (JSON API)
   development/test/atndev/     one test namespace per module
-frontend/                      ClojureScript workspace scaffold (not started yet)
+frontend/                      Next.js + React web UI (see frontend/UI-DESIGN.md)
 ```
 
 The code currently lives in the Polylith `development` project. It hasn't been split into
